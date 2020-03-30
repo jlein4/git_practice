@@ -1,0 +1,32 @@
+cost_pgs = 125.0
+
+def cost_gs(weight):
+  if weight <= 2.0:
+    return weight * 1.5 + 20.0
+  elif weight > 2.0 and weight < 6.0:
+    return weight * 3 + 20.0
+  elif weight > 6.0 and weight <= 10.0:
+    return weight * 4 + 20.0
+  else:
+    return weight * 4.75 + 20.0
+  
+def drone(weight):
+  if weight <= 2.0:
+    return weight * 4.5
+  elif weight > 2.0 and weight < 6.0:
+    return weight * 9
+  elif weight > 6.0 and weight <= 10.0:
+    return weight * 12
+  else:
+    return weight * 14.25
+  
+def cheapest(weight):
+  if cost_pgs < cost_gs(weight) and cost_pgs < drone(weight):
+    return 'Premium is cheapest! It will cost '+ str(cost_pgs)
+  elif cost_gs(weight) < cost_pgs and cost_gs(weight) < drone(weight):
+    return 'Ground Shipping is cheapest! It will cost '+ str(cost_gs(weight))
+  else:
+    return 'Drone Shipping is cheapest! It will cost '+ str(drone(weight))
+  
+print(cheapest(4.8))
+print(cheapest(41.5))
